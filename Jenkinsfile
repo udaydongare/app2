@@ -1,12 +1,9 @@
-pipeline {	
-    agent {
-      dockerfile true
-    }
+pipeline {
+    agent { dockerfile true }
     stages {
-        stage('Example') {
-            agent { label 'worker-172.18.0.2-a5c8131e' }
+        stage('Test') {
             steps {
-                echo 'Hello World!'
+                sh 'git --version'
             }
         }
     }
