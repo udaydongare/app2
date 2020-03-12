@@ -1,5 +1,13 @@
-FROM jenkinsci/slave:latest
+FROM alpine
 
-RUN apt-get update
+LABEL maintainer Bill Wang <ozbillwang@gmail.com>
 
-CMD ["echo", "Hellow world...! from docker image"]
+RUN apk --update add git less openssh && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm /var/cache/apk/*
+
+VOLUME /git
+WORKDIR /git
+
+ENTRYPOINT ["git"]
+CMD ["--help"]
